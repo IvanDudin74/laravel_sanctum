@@ -19,6 +19,11 @@ const route = VueRouter.createRouter({
             component: () => import('./components/User/Registration.vue'),
             name: 'user.registration',
         },
+        {
+            path: '/personal',
+            component: () => import('./components/User/Personal.vue'),
+            name: 'user.personal',
+        },
     ]
 })
 

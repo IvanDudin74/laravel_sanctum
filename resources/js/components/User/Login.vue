@@ -15,8 +15,8 @@
                     .then(res => {
                     axios.post('/login', { email: this.email, password: this.password })
                         .then(r => {
-                            console.log(r);
-                            //this.$router.push({ name: 'get'})
+                            localStorage.authentificated = true
+                            this.$router.push({ name: 'get.index'})
                         })
                 });
             }

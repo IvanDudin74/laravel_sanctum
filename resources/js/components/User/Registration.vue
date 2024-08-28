@@ -22,7 +22,8 @@
                             password_confirmation: this.password_confirmation
                         })
                         .then(res => {
-                            console.log(res);
+                            localStorage.authentificated = true
+                            this.$router.push({ name: 'get.index'})
                         })
                     })
             }

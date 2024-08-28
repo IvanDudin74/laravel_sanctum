@@ -12,7 +12,7 @@
             logout() {
                 axios.post('/logout')
                     .then(res => {
-                        localStorage.authentificated = false
+                        localStorage.removeItem('authentificated')
                         this.$router.push({ name: 'user.login'})
                     })
             },
@@ -24,6 +24,12 @@
 
         mounted() {
             this.initAuthentificated()
+            console.log(this.authentificated)
+        },
+
+        updated() {
+            this.initAuthentificated()
+            console.log(this.authentificated)
         }
     }
 </script>
@@ -31,12 +37,12 @@
 
 <template>
     <div>
-        This is IndexComponent<br><br><br><br>
+        This is IndexComponent<br><br>
         <router-link v-if="!authentificated" :to="{ name: 'user.registration'}">Registration</router-link><br><br>
-        <router-link :to="{ name: 'user.login'}">Login</router-link><br><br>
+        <router-link v-if="!authentificated" :to="{ name: 'user.login'}">Login</router-link><br><br>
         <router-link v-if="authentificated" :to="{ name: 'user.personal'}">Personal</router-link><br><br>
         <router-link v-if="authentificated" :to="{ name: 'get.index'}">Get</router-link><br><br>
-        <a href="#" @click.prevent="logout()">Logout</a><br><br>
+        <a v-if="authentificated" href="#" @click.prevent="logout()">Logout</a><br><br>
         <router-view></router-view>
     </div>
 </template>

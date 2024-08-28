@@ -6,7 +6,7 @@
             getData() {
                 axios.get('/api/get')
                     .then(res => {
-                        console.log(res);
+                        //console.log(res);
                     })
             }
         },

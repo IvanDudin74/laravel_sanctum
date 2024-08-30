@@ -16,7 +16,7 @@
                     axios.post('/login', { email: this.email, password: this.password })
                         .then(r => {
                             localStorage.authentificated = true
-                            this.$router.push({ name: 'get.index'})
+                            this.$router.push({ name: 'user.personal'})
                         })
                 });
             }

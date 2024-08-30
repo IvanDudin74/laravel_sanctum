@@ -1,7 +1,7 @@
 import * as VueRouter from "vue-router"
 
 
-const route = VueRouter.createRouter({
+const router = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
     routes : [
         {
@@ -27,4 +27,26 @@ const route = VueRouter.createRouter({
     ]
 })
 
-export default route
+router.beforeEach((to, from, next) => {
+
+    const authentificated = localStorage.getItem('authentificated')
+
+    if (authentificated) {
+        if ((to.name === 'user.login') || (to.name === 'user.registration')) {
+            return next({ name: 'user.personal' })
+        }
+        else {
+            next()
+        }
+    }
+    else {
+        if ((to.name === 'user.login') || (to.name === 'user.registration')) {
+            return next()
+        }
+        else {
+            return next({ name: 'user.login' })
+        }
+    }
+    next()
+})
+export default router
